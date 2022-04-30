@@ -2,7 +2,7 @@ Documentation       Este arquivo não é uma suite, ele é o arquivo base.
 
 *Settings*
 Library     Browser
-
+Library     String
 
 *Keywords*
 Start Session
