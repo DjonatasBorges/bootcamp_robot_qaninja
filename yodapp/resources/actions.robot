@@ -1,7 +1,14 @@
 *Settings*
 Documentation       Ações customizadas do Yodapp
+Resource            base.robot
+
 
 *Keywords*
+Go To Home Page
+    Go To           ${BASE_URL}
+    Wait For Elements State         css=.carousel      visible     5
+
+
 Go To User Form
     Click       css=a[href="/new"]
     Wait For Elements State       css=p[class="card-header-title"]
@@ -34,8 +41,10 @@ Submit User Form
     Click                css=button >> text=Cadastrar
 
 Toaster Message Should Browser
-    [Arguments]     ${expected_message}
-    Get Text        css=.toast      ==      ${expected_message}
+    [Arguments]     ${expected_message}     
+    ${element}      Set Variable        css=.toast div
+    Wait For Elements State         ${element}      visible     5
+    Get Text         ${element}      equal      ${expected_message}
 
 Select Birth date
     [Arguments]             ${text_date}
@@ -44,3 +53,12 @@ Select Birth date
     Select Options By       xpath=(//header[@class="datepicker-header"]//select)[1]   text    ${date}[1] 
     Select Options By       xpath=(//header[@class="datepicker-header"]//select)[2]   text    ${date}[2]
     Click                   xpath=//a[contains(@class, "datepicker-cell")]//span[text()="${date}[0]"]
+
+User Should Be visible
+    [Arguments]     ${user}
+    
+    ${element}      Set Variable        css=.table tr:nth-child(2)
+    Wait For Elements State     ${element}      visible     5
+    Get Text        ${element}      contains    ${user}[name]   
+    Get Text        ${element}      contains    ${user}[email]
+    Get Text        ${element}      contains    ${user}[instagram]
