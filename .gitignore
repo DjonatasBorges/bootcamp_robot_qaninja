@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+yodapp/logs/
+getgeeks/deploys/
+getgeeks/project/logs/

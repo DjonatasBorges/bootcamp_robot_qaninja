@@ -1,8 +1,19 @@
+from faker import Faker
+fake = Faker()
+
 def factory_user():
-    user = {
-        'name': 'Djonatas',
-        'lastname': 'Borges',
-        'email': 'interdjonatas@gmail.com',
-        'password': 'Djonatas1990',
+    return {
+        'name': fake.first_name(),
+        'lastname': fake.last_name(),
+        'email': fake.free_email(),
+        'password': fake.password(),
     }
-    return user
+
+def factory_wrong_email():
+    first_name = fake.first_name()
+    return {
+        'name': first_name,
+        'lastname': fake.last_name(),
+        'email': f'{first_name.lower()}&gmail.com',
+        'password': fake.password(),
+    }
