@@ -3,7 +3,7 @@ Documentation       Actions of system
 
 *Keywords*
 Go To Signup Form
-    Go To    https://getgeeks-djonatas.herokuapp.com/signup
+    Go To    ${BASE_URL}/signup
     Wait For Elements State     css=.signup-form    visible     10  
 
 Fill Signup Form
@@ -21,3 +21,25 @@ User Should Be Registered
     ${expected_message}     Set Variable        Agora você faz parte da Getgeeks. Tenha uma ótima experiência.
     ${locator_message}      Set Variable        css=p
     Get Text        ${locator_message}      ==       ${expected_message}
+
+Modal Content Should Be
+    [Arguments]     ${expected_text}
+
+    ${found_title}              Set Variable          css=.swal2-title
+
+    Wait For Elements State     ${found_title}        visible     5
+    Get Text                    ${found_title}        equal       Oops...
+
+    ${found_text}               Set Variable         css=.swal2-html-container
+
+    Wait For Elements State     css=.swal2-html-container    visible     5
+    Get Text                    ${found_text}                equal       ${expected_text}
+
+
+Alert Span Should Be
+    [Arguments]     ${expected_alert}
+
+    ${found_alert}       Set Variable                css=span[class="error"] >> text=${expected_alert}
+    Wait For Elements State      ${found_alert}       visible     5
+
+    Get Text                    ${found_alert}   equal       ${expected_alert}
