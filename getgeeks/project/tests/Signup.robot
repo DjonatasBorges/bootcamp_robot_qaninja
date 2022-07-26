@@ -41,9 +41,41 @@ Wrong Email
 
 Required Fields
     [Tags]      rfields
+
+    @{expected_alerts}      Create List
+    ...     Cadê o seu nome?
+    ...     E o sobrenome?
+    ...     O email é importante também!
+    ...     Agora só falta a senha!
+
     Go To Signup Form
     Submit Signup Form
-    Alert Span Should Be     Cadê o seu nome?
-    Alert Span Should Be     E o sobrenome?
-    Alert Span Should Be     O email é importante também!
-    Alert Span Should Be     Agora só falta a senha!
+    Alert Spans Should Be       ${expected_alerts}
+
+
+Short password
+    [Tags]      short_pass
+    [Template]  Signup With Short Password
+    1
+    12
+    123
+    1234
+    12345
+    a
+    a1
+    a23
+    abc4
+    abc45
+
+***Keywords***
+Signup With Short Password
+    [Arguments]     ${short_pass}
+
+    ${user}     Create Dictionary
+    ...         name=Fernando               lastname=Papito
+    ...         email=papito@hotmail.com    password=${short_pass}
+
+    Go To Signup Form
+    Fill Signup Form    ${user}
+    Submit Signup Form
+    Alert Span Should Be  Informe uma senha com pelo menos 6 caracteres

@@ -2,6 +2,7 @@
 Documentation       Base Test
 
 Library     Browser
+Library     Collections
 Library     factories/Users.py
 
 Resource    Actions.robot
