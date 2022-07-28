@@ -8,4 +8,5 @@ Back To The Past
 
     Connect To Prostgres
     Reset Env
+    Users Seed
     Disconnect from Database

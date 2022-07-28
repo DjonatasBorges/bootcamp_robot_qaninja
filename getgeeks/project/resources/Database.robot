@@ -4,6 +4,8 @@ Documentation       Database Helpers
 
 Library         DatabaseLibrary
 
+Resource        Base.robot
+
 
 *Keywords*
 Connect To Prostgres
@@ -23,10 +25,16 @@ Reset Env
 Insert User
     [Arguments]     ${user}
 
+    ${hashed_pass}      Get Hashed Pass     ${user}[password]
+
     ${name}         Set Variable        ${user}[name] ${user}[lastname]
     ${email}        Set Variable        ${user}[email]
     ${password}     Set Variable        ${user}[password]
 
-    ${query}    Set Variable    INSERT INTO public.users (name, email, password_hash, is_geek) values ('${name}', '${email}', '${password}', false)
+    ${query}    Set Variable    INSERT INTO public.users (name, email, password_hash, is_geek) values ('${name}', '${email}', '${hashed_pass}', false)
 
     Execute SQL String  ${query}
+
+Users Seed
+    ${u}     Factory User Login
+    Insert User     ${u}

@@ -1,5 +1,13 @@
 from faker import Faker
+from bcrypt import gensalt, hashpw
 fake = Faker()
+
+
+
+def get_hashed_pass(password):
+    hashed = hashpw(password.encode('utf-8'), gensalt(8))
+    return hashed
+
 
 def factory_user():
     return {
@@ -16,4 +24,12 @@ def factory_wrong_email():
         'lastname': fake.last_name(),
         'email': f'{first_name.lower()}&gmail.com',
         'password': fake.password(),
+    }
+
+def factory_user_login():
+    return {
+        'name': "Djonatas",
+        'lastname': "Borges",
+        'email': "djonatas@qaninja.com.br",
+        'password': "pwd123",
     }
