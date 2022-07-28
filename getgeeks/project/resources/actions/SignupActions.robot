@@ -22,26 +22,4 @@ User Should Be Registered
     ${locator_message}      Set Variable        css=p
     Get Text        ${locator_message}      ==       ${expected_message}
 
-Alert Span Should Be
-    [Arguments]     ${expected_alert}
 
-    ${found_alert}       Set Variable                css=span[class="error"] >> text=${expected_alert}
-    Wait For Elements State      ${found_alert}       visible     5
-
-    Get Text                    ${found_alert}   equal       ${expected_alert}
-
-Alert Spans Should Be
-    [Arguments]     ${expected_alerts}
-
-    @{found_alerts}     Create List
-
-    @{alerts} =       Get Elements      css=.error
-
-    FOR     ${a}       IN      @{alerts}
-
-        ${alert} =          Get Text            ${a}
-        Append To List      ${found_alerts}     ${alert}
-    
-    END
-
-    Lists Should Be Equal       ${expected_alerts}      ${found_alerts}
