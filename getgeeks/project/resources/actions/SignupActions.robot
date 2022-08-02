@@ -1,4 +1,5 @@
 *Settings*
+
 Documentation       Signup Actions
 
 *Keywords*
@@ -21,5 +22,3 @@ User Should Be Registered
     ${expected_message}     Set Variable        Agora você faz parte da Getgeeks. Tenha uma ótima experiência.
     ${locator_message}      Set Variable        css=p
     Get Text        ${locator_message}      ==       ${expected_message}
-
-

@@ -1,4 +1,5 @@
 *Settings*
+
 Documentation       Login test suite
 
 Resource    ${EXECDIR}/resources/Base.robot
@@ -8,7 +9,7 @@ Test Teardown   Finish Session
 
 *Test Cases*
 User Login
-    ${user}     Factory User Login
+    ${user}     Factory User    login
     Go To Login Page
     Fill Credentials        ${user}
     Submit Credentials
@@ -66,5 +67,4 @@ Required fields
     Go To Login Page
     Submit Credentials
     Alert Spans Should Be   ${expected_alerts}
-
 # Desafio Resolvido

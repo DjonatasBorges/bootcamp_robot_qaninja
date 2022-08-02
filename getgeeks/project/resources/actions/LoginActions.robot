@@ -13,7 +13,6 @@ Fill Credentials
     Fill Text   css=#password      ${user}[password]
     
 Submit Credentials
-
     Click   css=.submit-button >> text=Entrar       delay=100ms
 
 User Should Be Logged In
@@ -26,4 +25,4 @@ User Should Be Logged In
     Get Text                    ${element}      equal       ${expected_fullname}  
 
 Should Be Type Email
-    Get Property    id=email        type         equal       email    
+    Get Property    id=email        type         equal       email
